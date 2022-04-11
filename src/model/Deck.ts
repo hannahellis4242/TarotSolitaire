@@ -16,4 +16,4 @@ export const createDeck = (): Deck =>
     .concat(createMinor("Cups"))
     .concat(createMinor("Wands"))
     .concat(createMinor("Swords"))
-    .concat(createMinor("Wands"));
+    .concat(createMinor("Penticles"));
