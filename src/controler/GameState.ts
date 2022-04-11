@@ -1,4 +1,4 @@
-import Command from "../model/Command";
+import Command from "./Command";
 import Model from "../model/model";
 
 export default class GameState {

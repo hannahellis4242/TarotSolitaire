@@ -1,6 +1,7 @@
+import GameState from "./controler/GameState";
+import StartCommand from "./controler/StartCommand";
 import { createDeck } from "./model/Deck";
-import Layout from "./model/Layout";
 
-const model = new Layout();
-model.start(createDeck());
-console.log(JSON.stringify(model, undefined, 4));
+const state = new GameState();
+state.add(new StartCommand(createDeck()));
+console.log(JSON.stringify(state.model, undefined, 4));
