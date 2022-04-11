@@ -1,2 +1,4 @@
-type Suit = "Major" | "Cups" | "Wands" | "Swords" | "Penticles";
+export type MajorArcana = "Major";
+export type MinorArcana = "Cups" | "Wands" | "Swords" | "Penticles";
+type Suit = MajorArcana | MinorArcana;
 export default Suit;
