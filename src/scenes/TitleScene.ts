@@ -12,6 +12,7 @@ class TitleScene extends Phaser.Scene {
     this.add
       .text(width / 2, height / 10, "Tarot\nSolitaire")
       .setAlign("center")
+      .setFontSize(32)
       .setFontStyle("bold")
       .setOrigin(0.5, 0.5);
     this.add
@@ -20,7 +21,8 @@ class TitleScene extends Phaser.Scene {
       .setOrigin(0.5, 0.5);
 
     const startButton = this.add
-      .text(width / 2, (2 * height) / 10, "Start")
+      .text(width / 2, (3 * height) / 10, "Start")
+      .setFontSize(20)
       .setAlign("center")
       .setOrigin(0.5)
       .setInteractive();
