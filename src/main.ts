@@ -12,8 +12,8 @@ const gameConfig: Phaser.Types.Core.GameConfig = {
   title: "Tarot Solitaire",
   type: Phaser.AUTO,
   scale: {
-    width: 600,
-    height: 400,
+    width: window.screen.availWidth,
+    height: window.screen.availHeight,
   },
   scene: [TitleScene, GameScene],
 };

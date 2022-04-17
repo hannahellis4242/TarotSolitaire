@@ -7,10 +7,11 @@ class GameScene extends Phaser.Scene {
   preload() {}
   create() {
     const { width, height } = this.sys.game.canvas;
-
+    this.cameras.main.setBackgroundColor("#32a852");
     const startButton = this.add
       .text(width / 2, height / 10, "Exit")
       .setAlign("center")
+      .setColor("#000")
       .setFontSize(32)
       .setOrigin(0.5)
       .setInteractive();
