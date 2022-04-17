@@ -5,6 +5,7 @@ import Card from "./model/Card";
 import { createDeck } from "./model/Deck";*/
 
 import Phaser from "phaser";
+import GameScene from "./scenes/GameScene";
 import TitleScene from "./scenes/TitleScene";
 
 const gameConfig: Phaser.Types.Core.GameConfig = {
@@ -14,7 +15,7 @@ const gameConfig: Phaser.Types.Core.GameConfig = {
     width: 600,
     height: 400,
   },
-  scene: [TitleScene],
+  scene: [TitleScene, GameScene],
 };
 
 const game = new Phaser.Game(gameConfig);

@@ -1,27 +1,17 @@
 import Phaser from "phaser";
 
-class TitleScene extends Phaser.Scene {
+class GameScene extends Phaser.Scene {
   constructor(width: number, height: number) {
-    super("TitleScene");
+    super("GameScene");
   }
-  preload() {
-    this.load.svg("logo", "assets/penticle.svg");
-  }
+  preload() {}
   create() {
     const { width, height } = this.sys.game.canvas;
-    this.add
-      .text(width / 2, height / 10, "Tarot\nSolitaire")
-      .setAlign("center")
-      .setFontStyle("bold")
-      .setOrigin(0.5, 0.5);
-    this.add
-      .image(width / 10, height / 10, "logo")
-      .setScale(0.2, 0.2)
-      .setOrigin(0.5, 0.5);
 
     const startButton = this.add
-      .text(width / 2, (2 * height) / 10, "Start")
+      .text(width / 2, height / 10, "Exit")
       .setAlign("center")
+      .setFontSize(32)
       .setOrigin(0.5)
       .setInteractive();
     startButton.on("pointerover", () => {
@@ -31,10 +21,10 @@ class TitleScene extends Phaser.Scene {
       startButton.setColor("#fff");
     });
     startButton.on("pointerdown", () => {
-      this.scene.start("GameScene");
+      this.scene.start("TitleScene");
     });
   }
   update(time: number, delta: number) {}
 }
 
-export default TitleScene;
+export default GameScene;
