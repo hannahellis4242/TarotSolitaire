@@ -11,14 +11,14 @@ const gameConfig: Phaser.Types.Core.GameConfig = {
   title: "Tarot Solitaire",
   type: Phaser.AUTO,
   scale: {
-    width: 1200,
-    height: 800,
+    width: 600,
+    height: 400,
   },
-  backgroundColor: "#efefef",
   scene: [TitleScene],
 };
 
-export const game = new Phaser.Game(gameConfig);
+const game = new Phaser.Game(gameConfig);
+console.log(game);
 /*
 const state = new GameState();
 state.add(new StartCommand(createDeck()));

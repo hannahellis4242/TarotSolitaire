@@ -1,22 +1,24 @@
 import Phaser from "phaser";
 
 class TitleScene extends Phaser.Scene {
-  size: { width: number; height: number };
-  constructor() {
+  constructor(width: number, height: number) {
     super("TitleScene");
-    this.size = this.game.canvas;
   }
   preload() {
     this.load.svg("logo", "assets/penticle.svg");
   }
   create() {
-    debugger;
-    this.size = this.game.canvas;
-    this.add
-      .text(this.size.width / 2, this.size.height / 2, "Tarot Solitaire")
-      .setColor("white")
+    const { width, height } = this.sys.game.canvas;
+    const text = this.add
+      .text(width / 2, height / 10, "Tarot\nSolitaire")
+      .setAlign("center")
+      .setFontStyle("bold")
       .setOrigin(0.5, 0.5);
-    this.add.image(100, 100, "logo");
+    let y = 0;
+    this.add
+      .image(width / 10, height / 10, "logo")
+      .setScale(0.2, 0.2)
+      .setOrigin(0.5, 0.5);
   }
   update(time: number, delta: number) {}
 }
