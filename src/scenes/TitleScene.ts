@@ -1,4 +1,5 @@
 import Phaser from "phaser";
+import createOption from "../utils/createOption";
 
 class TitleScene extends Phaser.Scene {
   constructor(width: number, height: number) {
@@ -14,23 +15,17 @@ class TitleScene extends Phaser.Scene {
       .setFontStyle("bold")
       .setOrigin(0.5, 0.5);
 
-    const startButton = this.add
-      .text(width / 2, (3 * height) / 10, "Start")
-      .setFontSize(20)
-      .setAlign("center")
-      .setOrigin(0.5)
-      .setInteractive();
-    startButton.on("pointerover", () => {
-      startButton.setColor("#4f0c6b");
-    });
-    startButton.on("pointerout", () => {
-      startButton.setColor("#fff");
-    });
-    startButton.on("pointerdown", () => {
-      this.scene.start("GameScene");
-    });
+    this.add.existing(
+      createOption(
+        this,
+        width / 2,
+        (3 * height) / 10,
+        "Start",
+        { base: "#fff", hover: "#4f0c6b" },
+        () => this.scene.start("GameScene")
+      )
+    );
   }
-  update(time: number, delta: number) {}
 }
 
 export default TitleScene;
