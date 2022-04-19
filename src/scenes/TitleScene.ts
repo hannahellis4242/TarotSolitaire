@@ -4,9 +4,7 @@ class TitleScene extends Phaser.Scene {
   constructor(width: number, height: number) {
     super("TitleScene");
   }
-  preload() {
-    this.load.svg("logo", "assets/penticle.svg");
-  }
+
   create() {
     const { width, height } = this.sys.game.canvas;
     this.add

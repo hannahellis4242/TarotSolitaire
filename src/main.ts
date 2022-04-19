@@ -6,6 +6,7 @@ import { createDeck } from "./model/Deck";*/
 
 import Phaser from "phaser";
 import GameScene from "./scenes/GameScene";
+import PreloadScene from "./scenes/PreloadScene";
 import TitleScene from "./scenes/TitleScene";
 
 const gameConfig: Phaser.Types.Core.GameConfig = {
@@ -15,11 +16,10 @@ const gameConfig: Phaser.Types.Core.GameConfig = {
     width: window.screen.availWidth,
     height: window.screen.availHeight,
   },
-  scene: [TitleScene, GameScene],
+  scene: [PreloadScene, TitleScene, GameScene],
 };
 
 const game = new Phaser.Game(gameConfig);
-console.log(game);
 /*
 const state = new GameState();
 state.add(new StartCommand(createDeck()));
