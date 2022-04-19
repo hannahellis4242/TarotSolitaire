@@ -14,7 +14,6 @@
    height="1024.9097"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
-   xmlns:xlink="http://www.w3.org/1999/xlink"
    xmlns="http://www.w3.org/2000/svg"
    xmlns:svg="http://www.w3.org/2000/svg"
    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
@@ -33,16 +32,6 @@
          style="stop-color:#f9f9f9"
          offset="1" />
     </linearGradient>
-    <linearGradient
-       id="linearGradient10334-5"
-       y2="120.16"
-       xlink:href="#linearGradient2503-4-2-6"
-       spreadMethod="reflect"
-       gradientUnits="userSpaceOnUse"
-       x2="513.08002"
-       y1="119.57"
-       x1="503.39999"
-       inkscape:collect="always" />
     <linearGradient
        id="linearGradient10097-0">
       <stop
@@ -70,16 +59,6 @@
          style="stop-color:#2f2f2f"
          offset="1" />
     </linearGradient>
-    <linearGradient
-       inkscape:collect="always"
-       xlink:href="#linearGradient2503-4-2-6"
-       id="linearGradient102"
-       gradientUnits="userSpaceOnUse"
-       x1="503.39999"
-       y1="119.57"
-       x2="513.08002"
-       y2="120.16"
-       spreadMethod="reflect" />
   </defs>
   <sodipodi:namedview
      id="base"
@@ -89,13 +68,13 @@
      pagecolor="#ffffff"
      inkscape:window-height="821"
      inkscape:window-maximized="1"
-     inkscape:zoom="0.5"
+     inkscape:zoom="7.2769281"
      inkscape:window-x="607"
      showgrid="false"
      borderopacity="1.0"
-     inkscape:current-layer="layer1"
-     inkscape:cx="37"
-     inkscape:cy="435"
+     inkscape:current-layer="g10603"
+     inkscape:cx="104.50838"
+     inkscape:cy="986.33653"
      showguides="true"
      inkscape:guide-bbox="true"
      inkscape:window-width="1440"
@@ -133,21 +112,21 @@
           <g
              id="g10324"
              transform="translate(1.1808,2.8053)"
-             style="fill:#000000">
+             style="fill:#000000;stroke:none;stroke-opacity:1">
             <g
                id="g9688"
                transform="matrix(2.4112,0,0,2.4112,-2061.8,-882.93)"
-               style="fill:#000000">
+               style="fill:#000000;stroke:none;stroke-opacity:1">
               <circle
                  id="path4030-4"
-                 style="fill:#000000;stroke:url(#linearGradient102);stroke-width:0.23603;stroke-linecap:round;stroke-linejoin:round"
+                 style="fill:#000000;stroke:none;stroke-width:0.23603;stroke-linecap:round;stroke-linejoin:round;stroke-opacity:1"
                  transform="matrix(0.85467,0.0013156,-0.0013156,0.85467,637.03,376.54)"
                  cx="501.01837"
                  cy="-11.850929"
                  r="29.452419" />
               <circle
                  id="path2487-9"
-                 style="fill:#000000;stroke:url(#linearGradient10334-5);stroke-width:0.23603;stroke-linecap:round;stroke-linejoin:round"
+                 style="fill:#000000;stroke:none;stroke-width:0.23603;stroke-linecap:round;stroke-linejoin:round;stroke-opacity:1"
                  transform="matrix(0.78212,0.001204,-0.001204,0.78212,673.38,375.73)"
                  cx="501.01837"
                  cy="-11.850929"
@@ -156,17 +135,17 @@
             <g
                id="g9746"
                transform="translate(-0.36239,4.1857)"
-               style="fill:#000000">
+               style="fill:#000000;stroke:none;stroke-opacity:1">
               <circle
                  id="path8747"
-                 style="fill:#000000"
+                 style="fill:#000000;stroke:none;stroke-opacity:1"
                  transform="matrix(1.4949,2.5892,-2.5892,1.4949,1266.9,-1476.4)"
                  cx="300"
                  cy="466.64789"
                  r="17.142857" />
               <circle
                  id="path2173"
-                 style="fill:#000000"
+                 style="fill:#000000;stroke:none;stroke-opacity:1"
                  transform="matrix(1.24,2.1478,-2.1478,1.24,1137.4,-1225)"
                  cx="300"
                  cy="466.64789"
