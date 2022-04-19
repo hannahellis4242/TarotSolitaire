@@ -13,10 +13,6 @@ class TitleScene extends Phaser.Scene {
       .setFontSize(32)
       .setFontStyle("bold")
       .setOrigin(0.5, 0.5);
-    this.add
-      .image(width / 10, height / 10, "logo")
-      .setScale(0.2, 0.2)
-      .setOrigin(0.5, 0.5);
 
     const startButton = this.add
       .text(width / 2, (3 * height) / 10, "Start")
