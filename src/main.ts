@@ -9,14 +9,20 @@ import GameScene from "./scenes/GameScene";
 import PreloadScene from "./scenes/PreloadScene";
 import TitleScene from "./scenes/TitleScene";
 
+const screenSize = {
+  width: 830,
+  height: window.screen.availHeight,
+};
+
 const gameConfig: Phaser.Types.Core.GameConfig = {
   title: "Tarot Solitaire",
   type: Phaser.AUTO,
-  scale: {
-    width: window.screen.availWidth,
-    height: window.screen.availHeight,
-  },
-  scene: [PreloadScene, TitleScene, GameScene],
+  scale: screenSize,
+  scene: [
+    new PreloadScene(),
+    new TitleScene(),
+    new GameScene(screenSize.width, screenSize.height),
+  ],
 };
 
 const game = new Phaser.Game(gameConfig);

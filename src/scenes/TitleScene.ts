@@ -2,7 +2,7 @@ import Phaser from "phaser";
 import createOption from "../utils/createOption";
 
 class TitleScene extends Phaser.Scene {
-  constructor(width: number, height: number) {
+  constructor() {
     super("TitleScene");
   }
 
