@@ -1,4 +1,5 @@
 import Phaser from "phaser";
+import CardSprite from "../sprites/CardSprite";
 import calculateGridPositions from "../utils/calculateGridPositions";
 import createOption from "../utils/createOption";
 import GameLayout, { CardSize, Slot } from "../utils/GameLayout";
@@ -49,6 +50,7 @@ class GameScene extends Phaser.Scene {
       console.log(slot);
       this.add.existing(createSlot(this, slot));
     });
+    this.add.existing(new CardSprite(this, this.gameLayout.pack, ""));
   }
   update(time: number, delta: number) {}
 }
