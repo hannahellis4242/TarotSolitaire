@@ -1,7 +1,7 @@
 import Card from "../model/Card";
 import { Slot } from "../utils/GameLayout";
 
-export default class CardSprite extends Phaser.Physics.Arcade.Sprite {
+export default class CardSprite extends Phaser.GameObjects.Sprite {
   redraw: boolean;
   constructor(
     scene: Phaser.Scene,
