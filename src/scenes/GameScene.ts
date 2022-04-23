@@ -1,5 +1,9 @@
 import Phaser from "phaser";
+import Command from "../controler/Command";
+import StartCommand from "../controler/StartCommand";
 import Card from "../model/Card";
+import Deck, { createDeck } from "../model/Deck";
+import Layout from "../model/Layout";
 import CardSprite from "../sprites/CardSprite";
 import calculateGridPositions from "../utils/calculateGridPositions";
 import createOption from "../utils/createOption";
@@ -20,6 +24,9 @@ class GameScene extends Phaser.Scene {
   cardSize: CardSize;
   spacing: number;
   gameLayout: GameLayout;
+  deck: Deck;
+  model: Layout;
+  commands: Command[];
 
   constructor(width: number, height: number) {
     super("GameScene");
@@ -27,6 +34,9 @@ class GameScene extends Phaser.Scene {
     this.spacing = 20;
     const positions = calculateGridPositions(this.cardSize, this.spacing);
     this.gameLayout = new GameLayout(this.cardSize, positions);
+    this.deck = createDeck();
+    this.model = new StartCommand(this.deck).redo(new Layout());
+    this.commands = [];
   }
   create() {
     const { width, height } = this.sys.game.canvas;
@@ -56,7 +66,6 @@ class GameScene extends Phaser.Scene {
       new Card("Major", "0", true)
     );
   }
-  update(time: number, delta: number) {}
 }
 
 export default GameScene;
