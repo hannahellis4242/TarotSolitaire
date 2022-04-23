@@ -7,7 +7,8 @@ class PreloadScene extends Phaser.Scene {
   preload() {
     this.load.svg("penticle", "assets/penticle.svg");
     this.load.svg("TwoSwords", "assets/TwoOfSwords.svg");
-    this.load.svg("Paper", "assets/paper.svg");
+    this.load.svg("back", "assets/back.svg");
+    this.load.svg("front", "assets/front.svg");
   }
   create() {
     this.scene.start("TitleScene");
