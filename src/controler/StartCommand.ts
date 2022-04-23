@@ -1,6 +1,5 @@
 import Deck from "../model/Deck";
 import Layout from "../model/Layout";
-import Model from "../model/model";
 import Command from "./Command";
 
 const start = (cards: Deck) => {
