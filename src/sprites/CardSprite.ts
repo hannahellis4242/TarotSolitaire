@@ -3,8 +3,10 @@ import { Slot } from "../utils/GameLayout";
 
 export default class CardSprite extends Phaser.GameObjects.Sprite {
   redraw: boolean;
+  textureName: string;
   constructor(scene: Phaser.Scene, public slot: Slot, public card: Card) {
     super(scene, slot.x, slot.y, "back");
+    this.textureName = `card_${card.suit}_${card.pip}`;
     this.setOrigin(0);
     scene.add.existing(this);
     this.redraw = true;
@@ -17,7 +19,7 @@ export default class CardSprite extends Phaser.GameObjects.Sprite {
     this.scene.input.setDraggable(this, this.card.faceUp);
   }
   drawFaceUp() {
-    this.setTexture("front").setScale(1 / 10);
+    this.setTexture(this.textureName).setScale(1 / 10);
   }
   drawFaceDown() {
     this.setTexture("back").setScale(1 / 10);
