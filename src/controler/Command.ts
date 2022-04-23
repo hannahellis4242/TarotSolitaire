@@ -1,6 +1,6 @@
-import Model from "../model/model";
+import Layout from "../model/Layout";
 
 export default interface Command {
-  redo(model: Model): Model;
-  undo(model: Model): Model;
+  redo(model: Layout): Layout;
+  undo(model: Layout): Layout;
 }

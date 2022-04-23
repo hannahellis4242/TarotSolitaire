@@ -33,11 +33,10 @@ const start = (cards: Deck) => {
 
 export default class StartCommand implements Command {
   constructor(private cards: Deck) {}
-  redo(_: Model): Model {
-    const layout = start(this.cards);
-    return { layout };
+  redo(_: Layout): Layout {
+    return start(this.cards);
   }
-  undo(_: Model): Model {
-    return {};
+  undo(_: Layout): Layout {
+    return new Layout();
   }
 }

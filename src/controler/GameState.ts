@@ -1,12 +1,12 @@
 import Command from "./Command";
-import Model from "../model/model";
+import Layout from "../model/Layout";
 
 export default class GameState {
-  model: Model;
+  model: Layout;
   redoComands: Command[];
   undoCommands: Command[];
   constructor() {
-    this.model = {};
+    this.model = new Layout();
     this.undoCommands = [];
     this.redoComands = [];
   }
