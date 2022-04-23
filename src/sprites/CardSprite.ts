@@ -3,53 +3,24 @@ import { Slot } from "../utils/GameLayout";
 
 export default class CardSprite extends Phaser.GameObjects.Sprite {
   redraw: boolean;
-  constructor(
-    scene: Phaser.Scene,
-    public slot: Slot,
-    texture: string,
-    public card: Card
-  ) {
-    super(scene, slot.x, slot.y, texture);
+  constructor(scene: Phaser.Scene, public slot: Slot, public card: Card) {
+    super(scene, slot.x, slot.y, "back");
+    this.setOrigin(0);
+    scene.add.existing(this);
     this.redraw = true;
+    this.setInteractive();
+    this.scene.input.setDraggable(this, this.card.faceUp);
   }
   flipOver() {
     this.card.faceUp = !this.card.faceUp;
     this.redraw = true;
+    this.scene.input.setDraggable(this, this.card.faceUp);
   }
   drawFaceUp() {
-    this.scene.add
-      .rectangle(
-        this.slot.x,
-        this.slot.y,
-        this.slot.width,
-        this.slot.height,
-        0,
-        1
-      )
-      .setOrigin(0);
-    const boarder = 1;
-    this.scene.add
-      .rectangle(
-        this.slot.x + boarder,
-        this.slot.y + boarder,
-        this.slot.width - 2 * boarder,
-        this.slot.height - 2 * boarder,
-        0xffffff,
-        1
-      )
-      .setOrigin(0);
+    this.setTexture("front").setScale(1 / 10);
   }
   drawFaceDown() {
-    this.scene.add
-      .rectangle(
-        this.slot.x,
-        this.slot.y,
-        this.slot.width,
-        this.slot.height,
-        0,
-        1
-      )
-      .setOrigin(0);
+    this.setTexture("back").setScale(1 / 10);
   }
   protected preUpdate(time: number, delta: number): void {
     if (this.redraw) {

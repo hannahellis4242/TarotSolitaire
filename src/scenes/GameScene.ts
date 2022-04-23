@@ -48,16 +48,12 @@ class GameScene extends Phaser.Scene {
       this.add.existing(createSlot(this, slot));
     });
     this.gameLayout.tableu.forEach((slot) => {
-      console.log(slot);
       this.add.existing(createSlot(this, slot));
     });
-    this.add.existing(
-      new CardSprite(
-        this,
-        this.gameLayout.pack,
-        "Paper",
-        new Card("Major", "0", false)
-      )
+    const card = new CardSprite(
+      this,
+      this.gameLayout.pack,
+      new Card("Major", "0", true)
     );
   }
   update(time: number, delta: number) {}
