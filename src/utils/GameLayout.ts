@@ -10,6 +10,14 @@ export interface Slot {
   height: number;
 }
 
+export const adjustSlot = (
+  { x, y, width, height }: Slot,
+  xOffset: number,
+  yOffset: number
+): Slot => {
+  return { x: x + xOffset, y: y + yOffset, width, height };
+};
+
 export default class GameLayout {
   pack: Slot;
   discard: Slot;

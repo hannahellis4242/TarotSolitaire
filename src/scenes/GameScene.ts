@@ -7,7 +7,7 @@ import Layout from "../model/Layout";
 import CardSprite from "../sprites/CardSprite";
 import calculateGridPositions from "../utils/calculateGridPositions";
 import createOption from "../utils/createOption";
-import GameLayout, { CardSize, Slot } from "../utils/GameLayout";
+import GameLayout, { adjustSlot, CardSize, Slot } from "../utils/GameLayout";
 
 const createSlot = (scene: Phaser.Scene, { x, y, width, height }: Slot) =>
   new Phaser.GameObjects.Rectangle(
@@ -27,6 +27,7 @@ class GameScene extends Phaser.Scene {
   deck: Deck;
   model: Layout;
   commands: Command[];
+  cards: CardSprite[];
 
   constructor(width: number, height: number) {
     super("GameScene");
@@ -37,6 +38,7 @@ class GameScene extends Phaser.Scene {
     this.deck = createDeck();
     this.model = new StartCommand(this.deck).redo(new Layout());
     this.commands = [];
+    this.cards = [];
   }
   create() {
     const { width, height } = this.sys.game.canvas;
@@ -60,10 +62,52 @@ class GameScene extends Phaser.Scene {
     this.gameLayout.tableu.forEach((slot) => {
       this.add.existing(createSlot(this, slot));
     });
-    const card = new CardSprite(
-      this,
-      this.gameLayout.pack,
-      new Card("Major", "0", true)
+    this.placeCards();
+  }
+  placeCards() {
+    this.cards.forEach((card) => card.destroy());
+    //place pack
+    this.cards.concat(
+      this.model.pack.map(
+        (card, index) =>
+          new CardSprite(
+            this,
+            adjustSlot(this.gameLayout.pack, index / 10, 0),
+            card
+          )
+      )
+    );
+    //place discard
+    this.cards.concat(
+      this.model.discard.map(
+        (card, index) =>
+          new CardSprite(
+            this,
+            adjustSlot(this.gameLayout.discard, index / 10, 0),
+            card
+          )
+      )
+    );
+    //place tableu
+    this.cards.concat(
+      this.model.tableau.flatMap((deck, i) =>
+        deck.map(
+          (card, j) =>
+            new CardSprite(
+              this,
+              adjustSlot(this.gameLayout.tableu[i], 0, j * 10),
+              card
+            )
+        )
+      )
+    );
+    //place foundation
+    this.cards.concat(
+      this.model.foundationRow.flatMap((deck, i) =>
+        deck.map(
+          (card) => new CardSprite(this, this.gameLayout.foundation[i], card)
+        )
+      )
     );
   }
 }
