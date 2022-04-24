@@ -76,6 +76,7 @@ class GameScene extends Phaser.Scene {
   deck: Deck;
   controller: GameState;
   sprites: GameSprites;
+  packSlot?: Phaser.GameObjects.Rectangle;
 
   constructor(width: number, height: number) {
     super("GameScene");
@@ -95,7 +96,9 @@ class GameScene extends Phaser.Scene {
     this.placeCards();
   }
   buildSlots() {
-    this.add.existing(createSlot(this, this.gameLayout.pack));
+    this.packSlot = createSlot(this, this.gameLayout.pack);
+    this.packSlot.setInteractive();
+    this.add.existing(this.packSlot);
     this.add.existing(createSlot(this, this.gameLayout.discard));
     this.gameLayout.foundation.forEach((slot) => {
       this.add.existing(createSlot(this, slot));
@@ -114,11 +117,21 @@ class GameScene extends Phaser.Scene {
     if (lastPackCard) {
       lastPackCard.off("pointerdown");
     }
+    if (this.packSlot) {
+      this.packSlot.off("pointerdown");
+    }
   }
   createEvents() {
     const lastPackCard = this.sprites.pack.at(-1);
     if (lastPackCard) {
       lastPackCard.on("pointerdown", () => {
+        console.log("clicked");
+        this.controller.add(new FlipPack());
+        this.placeCards();
+      });
+    }
+    if (this.packSlot) {
+      this.packSlot.on("pointerdown", () => {
         console.log("clicked");
         this.controller.add(new FlipPack());
         this.placeCards();

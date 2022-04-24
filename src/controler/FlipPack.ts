@@ -24,10 +24,10 @@ export default class FlipPack implements Command {
     } else {
       //we've exhusted the pack, flip over the discard and put it back
       const next = new Layout();
-      next.pack = [];
-      next.discard = prev.pack.map(
+      next.pack = prev.discard.map(
         ({ suit, pip, faceUp }) => new Card(suit, pip, !faceUp)
       );
+      next.discard = [];
       next.foundationRow = prev.foundationRow;
       next.tableau = prev.tableau;
       return next;
