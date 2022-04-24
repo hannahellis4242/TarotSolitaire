@@ -2,12 +2,21 @@ import Command from "./Command";
 import Layout from "../model/Layout";
 
 export default class GameState {
+  public model: Layout;
   redoComands: Command[];
   undoCommands: Command[];
-  constructor(private model: Layout) {
+  constructor() {
+    this.model = new Layout();
     this.undoCommands = [];
     this.redoComands = [];
   }
+
+  set(newModel: Layout) {
+    this.undoCommands = [];
+    this.redoComands = [];
+    this.model = newModel;
+  }
+
   add(command: Command) {
     this.undoCommands = [];
     this.redoComands.push(command);

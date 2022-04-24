@@ -1,5 +1,6 @@
 import Phaser, { Game } from "phaser";
 import Command from "../controler/Command";
+import FlipPack from "../controler/FlipPack";
 import GameState from "../controler/GameState";
 import StartCommand from "../controler/StartCommand";
 import Card from "../model/Card";
@@ -73,7 +74,6 @@ class GameScene extends Phaser.Scene {
   spacing: number;
   gameLayout: GameLayout;
   deck: Deck;
-  model: Layout;
   controller: GameState;
   sprites: GameSprites;
 
@@ -84,8 +84,8 @@ class GameScene extends Phaser.Scene {
     const positions = calculateGridPositions(this.cardSize, this.spacing);
     this.gameLayout = new GameLayout(this.cardSize, positions);
     this.deck = createDeck();
-    this.model = new StartCommand(this.deck).redo(new Layout());
-    this.controller = new GameState(this.model);
+    this.controller = new GameState();
+    this.controller.set(new StartCommand(this.deck).redo(new Layout()));
     this.sprites = new GameSprites();
   }
   create() {
@@ -106,24 +106,22 @@ class GameScene extends Phaser.Scene {
   }
   placeCards() {
     this.removeEvents();
-    this.sprites.build(this, this.model, this.gameLayout);
+    this.sprites.build(this, this.controller.model, this.gameLayout);
     this.createEvents();
   }
   removeEvents() {
     const lastPackCard = this.sprites.pack.at(-1);
     if (lastPackCard) {
-      lastPackCard.off("pointerdown", () => {
-        console.log("clicked");
-      });
+      lastPackCard.off("pointerdown");
     }
   }
   createEvents() {
-    console.log(this.sprites.pack);
     const lastPackCard = this.sprites.pack.at(-1);
-    console.log(lastPackCard);
     if (lastPackCard) {
       lastPackCard.on("pointerdown", () => {
         console.log("clicked");
+        this.controller.add(new FlipPack());
+        this.placeCards();
       });
     }
   }
