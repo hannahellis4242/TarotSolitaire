@@ -94,16 +94,6 @@ class GameScene extends Phaser.Scene {
   create() {
     const { width, height } = this.sys.game.canvas;
     this.cameras.main.setBackgroundColor("#32a852");
-    this.add.existing(
-      createOption(
-        this,
-        width / 2,
-        height / 20,
-        "Exit",
-        { base: "#000", hover: "#4f0c6b" },
-        () => this.scene.start("TitleScene")
-      )
-    );
 
     this.add.existing(createSlot(this, this.gameLayout.pack));
     this.add.existing(createSlot(this, this.gameLayout.discard));
