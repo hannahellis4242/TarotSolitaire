@@ -9,7 +9,7 @@ class PreloadScene extends Phaser.Scene {
     createDeck().forEach((card) => {
       this.load.svg(
         `card_${card.suit}_${card.pip}`,
-        `assets/card_${card.suit}_${card.pip}.svg`
+        `assets/card/card_${card.suit}_${card.pip}.svg`
       );
     });
 
