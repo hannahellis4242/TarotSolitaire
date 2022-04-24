@@ -1,5 +1,6 @@
 import Phaser, { Game } from "phaser";
 import Command from "../controler/Command";
+import GameState from "../controler/GameState";
 import StartCommand from "../controler/StartCommand";
 import Card from "../model/Card";
 import Deck, { createDeck } from "../model/Deck";
@@ -34,33 +35,25 @@ class GameSprites {
   build(scene: Phaser.Scene, model: Layout, layout: GameLayout) {
     this.clear();
     //place pack
-    this.pack.concat(
-      model.pack.map(
-        (card, index) =>
-          new CardSprite(scene, adjustSlot(layout.pack, index / 10, 0), card)
-      )
+    this.pack = model.pack.map(
+      (card, index) =>
+        new CardSprite(scene, adjustSlot(layout.pack, index / 10, 0), card)
     );
     //place discard
-    this.discard.concat(
-      model.discard.map(
-        (card, index) =>
-          new CardSprite(scene, adjustSlot(layout.discard, index / 10, 0), card)
-      )
+    this.discard = model.discard.map(
+      (card, index) =>
+        new CardSprite(scene, adjustSlot(layout.discard, index / 10, 0), card)
     );
     //place tableu
-    this.tableu.concat(
-      model.tableau.map((deck, i) =>
-        deck.map(
-          (card, j) =>
-            new CardSprite(scene, adjustSlot(layout.tableu[i], 0, j * 10), card)
-        )
+    this.tableu = model.tableau.map((deck, i) =>
+      deck.map(
+        (card, j) =>
+          new CardSprite(scene, adjustSlot(layout.tableu[i], 0, j * 10), card)
       )
     );
     //place foundation
-    this.foundation.concat(
-      model.foundationRow.map((deck, i) =>
-        deck.map((card) => new CardSprite(scene, layout.foundation[i], card))
-      )
+    this.foundation = model.foundationRow.map((deck, i) =>
+      deck.map((card) => new CardSprite(scene, layout.foundation[i], card))
     );
   }
   clear() {
@@ -68,6 +61,10 @@ class GameSprites {
     this.discard.forEach((card) => card.destroy());
     this.tableu.forEach((deck) => deck.forEach((card) => card.destroy()));
     this.foundation.forEach((deck) => deck.forEach((card) => card.destroy()));
+    this.pack = [];
+    this.discard = [];
+    this.tableu = [];
+    this.foundation = [];
   }
 }
 
@@ -77,7 +74,7 @@ class GameScene extends Phaser.Scene {
   gameLayout: GameLayout;
   deck: Deck;
   model: Layout;
-  commands: Command[];
+  controller: GameState;
   sprites: GameSprites;
 
   constructor(width: number, height: number) {
@@ -88,13 +85,16 @@ class GameScene extends Phaser.Scene {
     this.gameLayout = new GameLayout(this.cardSize, positions);
     this.deck = createDeck();
     this.model = new StartCommand(this.deck).redo(new Layout());
-    this.commands = [];
+    this.controller = new GameState(this.model);
     this.sprites = new GameSprites();
   }
   create() {
     const { width, height } = this.sys.game.canvas;
     this.cameras.main.setBackgroundColor("#32a852");
-
+    this.buildSlots();
+    this.placeCards();
+  }
+  buildSlots() {
     this.add.existing(createSlot(this, this.gameLayout.pack));
     this.add.existing(createSlot(this, this.gameLayout.discard));
     this.gameLayout.foundation.forEach((slot) => {
@@ -103,10 +103,29 @@ class GameScene extends Phaser.Scene {
     this.gameLayout.tableu.forEach((slot) => {
       this.add.existing(createSlot(this, slot));
     });
-    this.placeCards();
   }
   placeCards() {
+    this.removeEvents();
     this.sprites.build(this, this.model, this.gameLayout);
+    this.createEvents();
+  }
+  removeEvents() {
+    const lastPackCard = this.sprites.pack.at(-1);
+    if (lastPackCard) {
+      lastPackCard.off("pointerdown", () => {
+        console.log("clicked");
+      });
+    }
+  }
+  createEvents() {
+    console.log(this.sprites.pack);
+    const lastPackCard = this.sprites.pack.at(-1);
+    console.log(lastPackCard);
+    if (lastPackCard) {
+      lastPackCard.on("pointerdown", () => {
+        console.log("clicked");
+      });
+    }
   }
 }
 
