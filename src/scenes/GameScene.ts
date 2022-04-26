@@ -146,6 +146,7 @@ class GameScene extends Phaser.Scene {
         (pointer: Phaser.Input.Pointer, dragX: number, dragY: number) => {
           lastDiscardCard.setX(dragX);
           lastDiscardCard.setY(dragY);
+          lastDiscardCard.setDepth(1);
         }
       );
     }
