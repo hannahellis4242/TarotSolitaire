@@ -120,22 +120,34 @@ class GameScene extends Phaser.Scene {
     if (this.packSlot) {
       this.packSlot.off("pointerdown");
     }
+    const lastDiscardCard = this.sprites.discard.at(-1);
+    if (lastDiscardCard) {
+      lastDiscardCard.off("drag");
+    }
   }
   createEvents() {
     const lastPackCard = this.sprites.pack.at(-1);
     if (lastPackCard) {
       lastPackCard.on("pointerdown", () => {
-        console.log("clicked");
         this.controller.add(new FlipPack());
         this.placeCards();
       });
     }
     if (this.packSlot) {
       this.packSlot.on("pointerdown", () => {
-        console.log("clicked");
         this.controller.add(new FlipPack());
         this.placeCards();
       });
+    }
+    const lastDiscardCard = this.sprites.discard.at(-1);
+    if (lastDiscardCard) {
+      lastDiscardCard.on(
+        "drag",
+        (pointer: Phaser.Input.Pointer, dragX: number, dragY: number) => {
+          lastDiscardCard.setX(dragX);
+          lastDiscardCard.setY(dragY);
+        }
+      );
     }
   }
 }
