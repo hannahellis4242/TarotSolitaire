@@ -5,19 +5,8 @@ import StartCommand from "../controler/StartCommand";
 import Deck, { createDeck } from "../model/Deck";
 import Layout from "../model/Layout";
 import calculateGridPositions from "../utils/calculateGridPositions";
-import GameLayout, { CardSize, Slot } from "../utils/GameLayout";
+import GameLayout, { CardSize, createSlot, Slot } from "../utils/GameLayout";
 import GameSprites from "../GameObjects/GameSprites";
-
-const createSlot = (scene: Phaser.Scene, { x, y, width, height }: Slot) =>
-  new Phaser.GameObjects.Rectangle(
-    scene,
-    x,
-    y,
-    width,
-    height,
-    0xffffff,
-    0.2
-  ).setOrigin(0);
 
 class GameScene extends Phaser.Scene {
   cardSize: CardSize;
