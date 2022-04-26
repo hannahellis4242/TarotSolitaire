@@ -1,4 +1,27 @@
-type Position = "pack" | "discard" | "foundation" | "tableu";
 export default class Location {
-  constructor(public position: Position, public index: number = 0) {}
+  constructor() {}
+}
+
+export class Pack extends Location {
+  constructor() {
+    super();
+  }
+}
+
+export class Discard extends Location {
+  constructor() {
+    super();
+  }
+}
+
+export class Foundation extends Location {
+  constructor(public index: number) {
+    super();
+  }
+}
+
+export class Tableu extends Location {
+  constructor(public index: number, public depth: number) {
+    super();
+  }
 }
