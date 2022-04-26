@@ -5,7 +5,7 @@ import StartCommand from "../controler/StartCommand";
 import Deck, { createDeck } from "../model/Deck";
 import Layout from "../model/Layout";
 import calculateGridPositions from "../utils/calculateGridPositions";
-import GameLayout, { CardSize, createSlot, Slot } from "../utils/GameLayout";
+import GameLayout, { CardSize, createSlot } from "../utils/GameLayout";
 import GameSprites from "../GameObjects/GameSprites";
 
 class GameScene extends Phaser.Scene {
