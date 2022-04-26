@@ -7,11 +7,13 @@ import Layout from "../model/Layout";
 import calculateGridPositions from "../utils/calculateGridPositions";
 import GameLayout, { CardSize, createSlot } from "../utils/GameLayout";
 import GameSprites from "../GameObjects/GameSprites";
+import GameZones from "../GameObjects/GameZones";
 
 class GameScene extends Phaser.Scene {
   cardSize: CardSize;
   spacing: number;
   gameLayout: GameLayout;
+  gameZones: GameZones;
   deck: Deck;
   controller: GameState;
   sprites: GameSprites;
@@ -23,6 +25,7 @@ class GameScene extends Phaser.Scene {
     this.spacing = 20;
     const positions = calculateGridPositions(this.cardSize, this.spacing);
     this.gameLayout = new GameLayout(this.cardSize, positions);
+    this.gameZones = new GameZones();
     this.deck = createDeck();
     this.controller = new GameState();
     this.controller.set(new StartCommand(this.deck).redo(new Layout()));
@@ -49,6 +52,7 @@ class GameScene extends Phaser.Scene {
   placeCards() {
     this.removeEvents();
     this.sprites.build(this, this.controller.model, this.gameLayout);
+    this.gameZones.build(this, this.sprites, this.gameLayout);
     this.createEvents();
   }
   removeEvents() {
