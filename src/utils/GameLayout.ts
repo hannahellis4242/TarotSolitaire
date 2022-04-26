@@ -10,6 +10,20 @@ export interface Slot {
   height: number;
 }
 
+export const createSlot = (
+  scene: Phaser.Scene,
+  { x, y, width, height }: Slot
+) =>
+  new Phaser.GameObjects.Rectangle(
+    scene,
+    x,
+    y,
+    width,
+    height,
+    0xffffff,
+    0.2
+  ).setOrigin(0);
+
 export const adjustSlot = (
   { x, y, width, height }: Slot,
   xOffset: number,
