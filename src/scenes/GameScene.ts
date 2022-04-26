@@ -122,6 +122,7 @@ class GameScene extends Phaser.Scene {
     }
     const lastDiscardCard = this.sprites.discard.at(-1);
     if (lastDiscardCard) {
+      lastDiscardCard.off("dragstart");
       lastDiscardCard.off("drag");
     }
   }
@@ -141,14 +142,19 @@ class GameScene extends Phaser.Scene {
     }
     const lastDiscardCard = this.sprites.discard.at(-1);
     if (lastDiscardCard) {
+      lastDiscardCard.on("dragstart", () => {
+        lastDiscardCard.setDepth(1);
+      });
       lastDiscardCard.on(
         "drag",
         (pointer: Phaser.Input.Pointer, dragX: number, dragY: number) => {
           lastDiscardCard.setX(dragX);
           lastDiscardCard.setY(dragY);
-          lastDiscardCard.setDepth(1);
         }
       );
+      lastDiscardCard.on("drop", () => {
+        console.log("dropping");
+      });
     }
   }
 }
